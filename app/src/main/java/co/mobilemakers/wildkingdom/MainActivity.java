@@ -12,6 +12,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState == null){
+            AnimalsListFragment animalsListFragment = new AnimalsListFragment();
+            getFragmentManager().beginTransaction().add(R.id.animal_list,animalsListFragment).commit();
+        }
     }
 
 
