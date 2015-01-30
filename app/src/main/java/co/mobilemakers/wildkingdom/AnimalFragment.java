@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ public class AnimalFragment extends Fragment {
     public static final String  NAME = "NAME";
     TextView mTextViewDesc, mTextViewHab, mTextViewName;
     ImageView mImageView;
+    Button mButton;
 
     public AnimalFragment() {
         // Required empty public constructor
@@ -35,6 +37,16 @@ public class AnimalFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_animal, container, false);
         findWidgets(rootView);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container, new AnimalsListFragment()).
+                        addToBackStack(null).
+                        commit();
+            }
+        });
         getAndSetData();
         return rootView;
     }
@@ -51,6 +63,7 @@ public class AnimalFragment extends Fragment {
         mTextViewHab = (TextView) rootView.findViewById(R.id.text_habitat);
         mTextViewName = (TextView) rootView.findViewById(R.id.text_name);
         mImageView = (ImageView) rootView.findViewById(R.id.imageView);
+        mButton = (Button) rootView.findViewById(R.id.button_home);
     }
 
 
